@@ -19,3 +19,4 @@ def get_user_input() :
 def options_switch(user_input) :
     if (user_input == 1) :
         add_usuario()
+    
