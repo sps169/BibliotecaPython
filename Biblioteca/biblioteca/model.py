@@ -175,7 +175,10 @@ class Libro:
             "usuario_prestamo: " + self.usuario_prestamo + " " \
             "fecha_prestamo: " + self.fecha_prestamo + " " \
             "}"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5e4e4be99e416923b61b8f9ca2a9d2a0b106e523
 class Biblioteca:
     lista_libros = []
     lista_usuarios = []
