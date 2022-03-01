@@ -1,4 +1,5 @@
 from Biblioteca.biblioteca.model import Usuario
+from Biblioteca.biblioteca.library_handler import store_usuario
 
 
 def add_usuario () :

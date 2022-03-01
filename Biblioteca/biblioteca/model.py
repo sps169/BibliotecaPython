@@ -55,6 +55,6 @@ class Libro:
             "usuario_prestamo: " + self.usuario_prestamo + " " \
             "fecha_prestamo: " + self.fecha_prestamo + " " \
             "}"
-class biblioteca:
+class Biblioteca:
     lista_libros = []
     lista_usuarios = []
