@@ -1,10 +1,7 @@
+from typing import List
+
+
 class Usuario :
-    __dni = ""
-    __nombre = ""
-    __email = ""
-    __telefono = ""
-    __domicilio = ""
-    __libros = []
 
     def __init__ (self, dni, nombre, email, telefono, domicilio) :
         self.__dni = dni
@@ -53,34 +50,16 @@ class Usuario :
         
     domicilio = property(get_domicilio, set_domicilio)
 
-    def get_libros(self) :
-        return self.__libros
-
-    def set_libros(self, libros) :
-        self.__libros = libros
-        
-    libros = property(get_libros, set_libros)
-
     def __repr__(self) -> str:
         return "Usuario{" + \
-            "dni: " + self.dni + " "\
-            "nombre: " + self.nombre + " "\
-            "email: " + self.email + " " \
-            "telefono: " + self.telefono + " " \
-            "domicilio: " + self.domicilio + " " \
-            "libros: " + self.libros + " " \
+            "dni: " + self.dni + ", "\
+            "nombre: " + self.nombre + ", "\
+            "email: " + self.email + ", " \
+            "telefono: " + self.telefono + ", " \
+            "domicilio: " + self.domicilio + "" \
         "}"
 
 class Libro:
-    __isbn = ""
-    __titulo = ""
-    __autor = ""
-    __genero = ""
-    __portada = ""
-    __sinopsis = ""
-    __ejemplares = 0
-    __usuario_prestamo = None
-    __fecha_prestamo = None
 
     def __init__ (self, isbn, titulo, autor, genero, portada, sinopsis, ejemplares) :
         self.__isbn = isbn
@@ -145,37 +124,103 @@ class Libro:
     def set_ejemplares(self, ejemplares) :
         self.__ejemplares = ejemplares
         
-    ejemplares = property(get_ejemplares, set_ejemplares)
-    
-    def get_usuario_prestamo(self) :
-        return self.__usuario_prestamo
-
-    def set_usuario_prestamo(self, usuario_prestamo) :
-        self.__usuario_prestamo = usuario_prestamo
-        
-    usuario_prestamo = property(get_usuario_prestamo, set_usuario_prestamo)    
-
-    def get_fecha_prestamo(self) :
-        return self.__fecha_prestamo
-
-    def set_fecha_prestamo(self, fecha_prestamo) :
-        self.__fecha_prestamo = fecha_prestamo
-        
-    fecha_prestamo = property(get_fecha_prestamo, set_fecha_prestamo)    
+    ejemplares = property(get_ejemplares, set_ejemplares) 
 
     def __repr__(self) -> str:
         return "Libro{ " \
-            "isbn: " + self.isbn + " " \
-            "titulo: " + self.titulo + " " \
-            "autor: " + self.autor + " " \
-            "genero: " + self.genero + " " \
-            "portada: " + self.portada + " " \
-            "sinopsis: " + self.sinopsis + " " \
-            "ejemplares: " + self.ejemplares + " " \
-            "usuario_prestamo: " + self.usuario_prestamo + " " \
-            "fecha_prestamo: " + self.fecha_prestamo + " " \
+            "isbn: " + self.isbn + ", " \
+            "titulo: " + self.titulo + ", " \
+            "autor: " + self.autor + ", " \
+            "genero: " + self.genero + ", " \
+            "portada: " + self.portada + ", " \
+            "sinopsis: " + self.sinopsis + ", " \
+            "ejemplares: " + str(self.ejemplares) + "" \
             "}"
 
-class Biblioteca:
-    lista_libros = []
-    lista_usuarios = []
+class Prestamo:
+    curr_id = 1
+
+    def __init__(self, libro, usuario, fecha) :
+        self.__id = Prestamo.curr_id
+        Prestamo.curr_id = Prestamo.curr_id + 1
+        self.__libro = libro
+        self.__usuario = usuario
+        self.__fecha = fecha
+
+    def get_id(self) :
+        return self.__id
+
+    def set_id(self, id) :
+        self.__id = id
+
+    id = property(get_id, set_id)
+    
+    def get_libro(self) :
+        return self.__libro
+
+    def set_libro(self, libro) :
+        self.__libro = libro
+
+    libro = property(get_libro, set_libro)
+
+    def get_usuario(self) :
+        return self.__usuario
+    
+    def set_usuario(self, usuario) :
+        self.__usuario = usuario
+
+    usuario = property(get_usuario, set_usuario)
+
+    def get_fecha(self) :
+        return self.__fecha
+
+    def set_fecha(self, fecha) :
+        self.__fecha = fecha
+
+    fecha = property(get_fecha, set_fecha)
+
+    def __repr__(self) -> str:
+        return "Prestamo{ " \
+            "id: " + str(self.id) + ", " \
+            "libro: " + str(self.libro) + ", " \
+            "usuario: " + str(self.usuario) + ", " \
+            "fecha: " + str(self.fecha) + "" \
+            "}"
+
+class BibliotecaObject:
+
+    def __init__(self) :
+        self.__lista_libros = []
+        self.__lista_usuarios = []
+        self.__lista_prestamos = []
+
+    def get_lista_libros(self) :
+        return self.__lista_libros
+
+    def set_lista_libros(self, lista_libros) :
+        self.__lista_libros = lista_libros
+
+    lista_libros = property(get_lista_libros, set_lista_libros)
+
+    def get_lista_usuarios(self) :
+        return self.__lista_usuarios
+
+    def set_lista_usuarios(self, lista_usuarios) :
+        self.__lista_usuarios = lista_usuarios
+
+    lista_usuarios = property(get_lista_usuarios, set_lista_usuarios)
+    
+    def get_lista_prestamos(self) :
+        return self.__lista_prestamos
+
+    def set_lista_prestamos(self, lista_prestamos) :
+        self.__lista_prestamos = lista_prestamos
+
+    lista_prestamos = property(get_lista_prestamos, set_lista_prestamos)
+
+    def __repr__(self) -> str:
+        return "Biblioteca{" \
+            "libros: " + str(self.lista_libros) + ", " \
+            "usuarios: " + str(self.lista_usuarios) + ", "\
+            "prestamos:" + str(self.lista_prestamos) + ""\
+            "}"  
